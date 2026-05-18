@@ -23,7 +23,7 @@ em linguagem natural — sem depender de palavras-chave exatas.
 
 ---
 
-## Como Rodar
+## Como rodar o projeto
 
 1. Clone o repositório e instale as dependências:
 
