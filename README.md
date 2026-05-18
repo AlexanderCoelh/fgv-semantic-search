@@ -1,6 +1,4 @@
-Aqui está o README humanizado com tudo que a gente discutiu:
-
-markdown# Mini Motor de Busca Semântico — Notícias Econômicas
+# Mini Motor de Busca Semântico — Notícias Econômicas
 
 Este projeto foi desenvolvido como solução para o desafio técnico de estágio em
 Ciência de Dados do FGV IBRE. O objetivo é construir um mini motor de busca
@@ -11,6 +9,7 @@ em linguagem natural — sem depender de palavras-chave exatas.
 
 ## Estrutura do Projeto
 
+```text
 ├── dados/
 │   └── noticias_brutas.json
 ├── dados_limpos/
@@ -20,6 +19,7 @@ em linguagem natural — sem depender de palavras-chave exatas.
 ├── etapa2_embeddings.py
 ├── etapa3_busca.py
 └── README.md
+```
 
 ---
 
@@ -27,13 +27,17 @@ em linguagem natural — sem depender de palavras-chave exatas.
 
 1. Clone o repositório e instale as dependências:
 
+```bash
 pip install -r requirements.txt
+```
 
 2. Execute as etapas em ordem:
 
+```bash
 python etapa1_limpeza.py
 python etapa2_embeddings.py
 python etapa3_busca.py
+```
 
 Na primeira execução, o modelo será baixado automaticamente (~400MB).
 
@@ -58,14 +62,14 @@ artigo como "Válido" ou "Inválido" com base no tamanho do texto limpo — text
 com mais de 50 caracteres foram considerados válidos. Esse critério foi suficiente
 para isolar o caso extremo sem descartar nenhum artigo legítimo.
 
-O resultado foi salvo em dados_limpos/noticias_limpas.json.
+O resultado foi salvo em `dados_limpos/noticias_limpas.json`.
 
 ---
 
 ## Etapa 2 — Geração de Embeddings
 
 Para transformar os textos em vetores numéricos, usei a biblioteca
-sentence-transformers com o modelo paraphrase-multilingual-MiniLM-L12-v2.
+`sentence-transformers` com o modelo `paraphrase-multilingual-MiniLM-L12-v2`.
 
 Esse modelo foi escolhido por três motivos principais: funciona bem em português,
 foi treinado especificamente para comparar similaridade semântica entre frases, e
@@ -73,7 +77,7 @@ foi treinado especificamente para comparar similaridade semântica entre frases,
 mais do que suficiente.
 
 Cada artigo válido foi convertido em um vetor de 384 dimensões. Os embeddings
-foram salvos em embeddings.npy para reutilização na etapa seguinte.
+foram salvos em `embeddings.npy` para reutilização na etapa seguinte.
 
 ---
 
@@ -91,18 +95,21 @@ Os resultados das três queries obrigatórias foram satisfatórios e demonstram 
 o motor consegue recuperar artigos relevantes mesmo sem correspondência exata
 de palavras.
 
-**"mudanças na taxa de juros"**
+### "mudanças na taxa de juros"
+
 Retornou artigos sobre a manutenção da Selic, projeções de corte de juros e
 crédito — todos diretamente relacionados à política monetária. O modelo conseguiu
 associar "taxa de juros" a "Selic" sem que a palavra aparecesse na query.
 
-**"mercado de trabalho e desemprego"**
+### "mercado de trabalho e desemprego"
+
 Os dois primeiros resultados foram muito precisos: um sobre desemprego juvenil e
 outro sobre a queda da taxa de desemprego para 7,9%. O terceiro, sobre o setor
 de serviços, também faz sentido — o setor é o maior empregador do Brasil e o
 artigo menciona explicitamente a melhora no mercado de trabalho.
 
-**"inflação e preços ao consumidor"**
+### "inflação e preços ao consumidor"
+
 O primeiro resultado foi sobre o IPA (inflação ao produtor), que tem relação
 direta com os preços ao consumidor. O segundo trouxe um artigo sobre a Selic,
 o que também é relevante já que a taxa de juros é o principal instrumento de
