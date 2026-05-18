@@ -14,7 +14,8 @@ def limpar_texto(texto):
     texto = soup.get_text(separator='') 
     texto = re.sub(r'.*?Publicado em.*?[\n\.]', '', texto)       
     texto = re.sub(r'\d{2}/\d{2}/\d{4}.*?\d{2}h\d{2}[^\w]*', '', texto) 
-    texto = re.sub(r'\s+', ' ', texto).strip()                   
+    texto = re.sub(r'\s+', ' ', texto).strip()
+    return texto
 
 # Aplicando a função no dataset
 
