@@ -12,6 +12,6 @@ modelo = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
 # Transforma o texto limpo em um vetor númerico
 
 vetores = modelo.encode(noticias_validas['texto_limpo'].tolist())
-np.save('embeddings.npy', modelo)
+np.save('embeddings.npy', vetores)
 
 print(f"Embeddings gerados: {vetores.shape}")
